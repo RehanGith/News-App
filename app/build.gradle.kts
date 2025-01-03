@@ -5,11 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.newsapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.newsapp"
         minSdk = 24
+        //noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -32,6 +33,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    viewBinding{
+        enable = true
     }
 }
 
