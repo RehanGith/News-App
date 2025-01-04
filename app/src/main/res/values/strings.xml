@@ -8,4 +8,8 @@
     <string name="no_internet">No Internet</string>
     <string name="retry">Retry</string>
     <string name="se">Search....</string>
+    <string name="article_image">article_image</string>
+    <string name="title">TITLE</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="date_time">DATE TIME</string>
 </resources>
