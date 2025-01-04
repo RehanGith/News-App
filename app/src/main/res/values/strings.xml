@@ -7,4 +7,5 @@
     <string name="search">Search</string>
     <string name="no_internet">No Internet</string>
     <string name="retry">Retry</string>
+    <string name="se">Search....</string>
 </resources>

@@ -15,11 +15,27 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="@string/favourites"
+        android:text="@string/search"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
+   <EditText
+       android:id="@+id/edSearch"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:autofillHints="creditCardNumber"
+       android:fontFamily="@font/my_font"
+       android:layout_marginStart="15dp"
+       android:layout_marginEnd="10dp"
+       android:drawableTint="@color/primary"
+       android:inputType="text"
+       app:layout_constraintTop_toBottomOf="@id/tvSearch"
+       android:background="@drawable/search_border"
+       android:drawableEnd="@drawable/ic_baseline_search_24"
+       android:hint="@string/se"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSearch"
@@ -30,8 +46,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvSearch"
-        app:layout_constraintVertical_bias="0.06999999" />
+        app:layout_constraintTop_toTopOf="@id/edSearch"
+        app:layout_constraintVertical_bias="0.050000012" />
+    <include
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_error"
+        android:visibility="invisible"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <ProgressBar
+        android:id="@+id/loadingProgressbar"
+        style="?attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        android:layout_margin="10dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,5 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.core.widget.NestedScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
