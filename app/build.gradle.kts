@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    //Retrofit library
+    implementation(libs.android.retrofit.json)
+    implementation(libs.android.retrofit2)
     //navigation libraries
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
