@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    //lifecycle library
+    implementation(libs.androidx.lifecyle.viewmodel)
     //Room database libraries
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
