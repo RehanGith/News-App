@@ -13,6 +13,5 @@ class RetrofitsInstance {
                 .build()
                 .create(ApiInterface::class.java)
         }
-
     }
 }
