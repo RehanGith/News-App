@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.newsapp.api.ApiInterface
 import com.example.newsapp.model.Article
 
 
@@ -31,6 +32,7 @@ abstract class NewsDatabase(context : Context): RoomDatabase() {
                 "newDatabase_db.db"
             ).build()
     }
+
 
 
 }

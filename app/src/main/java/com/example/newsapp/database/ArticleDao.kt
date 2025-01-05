@@ -12,7 +12,7 @@ import com.example.newsapp.model.Article
 @Dao
 interface ArticleDao {
     @Insert(onConflict =  OnConflictStrategy.REPLACE)
-    suspend fun addArticle(article: Article): Long
+    suspend fun upsert(article: Article): Long
 
     @Query("SELECT * FROM article")
     fun getAllArticle(): LiveData<List<Article>>
