@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="SOURCE"
+        android:text="@string/source"
         android:fontFamily="@font/my_font"
         android:textColor="@color/purple_200"
         app:layout_constraintStart_toStartOf="parent"
