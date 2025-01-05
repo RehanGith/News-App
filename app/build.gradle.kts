@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -40,6 +41,10 @@ android {
 }
 
 dependencies {
+    //Room database libraries
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     //Retrofit library
     implementation(libs.android.retrofit.json)
     implementation(libs.android.retrofit2)
