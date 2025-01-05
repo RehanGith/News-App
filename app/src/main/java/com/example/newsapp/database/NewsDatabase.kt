@@ -11,7 +11,7 @@ import com.example.newsapp.model.Article
 
 @Database( entities = [Article::class], version = 1)
 @TypeConverters(Converter::class)
-abstract class NewsDatabase(context : Context): RoomDatabase() {
+abstract class NewsDatabase: RoomDatabase() {
     abstract fun getArticleDao(): ArticleDao
 
     companion object {
