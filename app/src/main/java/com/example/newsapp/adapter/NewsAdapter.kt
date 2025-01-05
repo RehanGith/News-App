@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.newsapp.databinding.ItemNewsBinding
 import com.example.newsapp.model.Article
 import retrofit2.Response
@@ -37,10 +38,20 @@ class NewsAdapter(private val context: Context):
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return differ.currentList.size
     }
-
+    private var onItemClickList: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
+        Glide.with(context).load(differ.currentList[position].urlToImage).into(holder.articleImage)
+        holder.articleTitle.text = differ.currentList[position].title
+        holder.articleSource.text = differ.currentList[position].source.name
+        holder.articleDateTime.text = differ.currentList[position].publishedAt
+        holder.articleDescription.text = differ.currentList[position].description
 
+        holder.itemView.setOnClickListener {
+            onItemClickList?.let {
+                it(differ.currentList[position])
+            }
+        }
     }
 }
