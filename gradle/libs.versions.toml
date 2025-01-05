@@ -35,6 +35,7 @@ android-retrofit-json = {group = "com.squareup.retrofit2", name = "converter-gso
 android-logging-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor"}
 androidx-room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room"}
+androidx-room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
 github-glide = {group = "com.github.bumptech.glide", name = "glide", version.ref = "gl"}
 pl-droidsonroids-gif = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "gif"}
 intuit-ssp = {group = "com.intuit.ssp", name = "ssp-android",  version.ref = "ssp" }
