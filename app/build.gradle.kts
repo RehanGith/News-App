@@ -48,6 +48,7 @@ dependencies {
     //Retrofit library
     implementation(libs.android.retrofit.json)
     implementation(libs.android.retrofit2)
+    implementation(libs.android.logging.interceptor)
     //navigation libraries
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
