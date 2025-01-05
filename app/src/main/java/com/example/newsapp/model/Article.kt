@@ -1,10 +1,13 @@
 package com.example.newsapp.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "Article")
+@Entity(tableName = "article")
 data class Article(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = null,
     val author: String,
     val content: String,
     val description: String,
