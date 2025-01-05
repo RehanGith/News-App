@@ -3,15 +3,12 @@ package com.example.newsapp.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.newsapp.databinding.ItemNewsBinding
 import com.example.newsapp.model.Article
-import retrofit2.Response
 
 class NewsAdapter(private val context: Context):
     RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
@@ -31,7 +28,7 @@ class NewsAdapter(private val context: Context):
             return oldItem == newItem
         }
     }
-    val differ = AsyncListDiffer(this@NewsAdapter, differCallBack)
+    private val differ = AsyncListDiffer(this@NewsAdapter, differCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
         return ArticleHolder(ItemNewsBinding.inflate(LayoutInflater.from(context), parent, false))
@@ -40,7 +37,7 @@ class NewsAdapter(private val context: Context):
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-    private var onItemClickList: ((Article) -> Unit)? = null
+    private var onItemClickListener: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
         Glide.with(context).load(differ.currentList[position].urlToImage).into(holder.articleImage)
         holder.articleTitle.text = differ.currentList[position].title
@@ -49,9 +46,12 @@ class NewsAdapter(private val context: Context):
         holder.articleDescription.text = differ.currentList[position].description
 
         holder.itemView.setOnClickListener {
-            onItemClickList?.let {
+            onItemClickListener?.let {
                 it(differ.currentList[position])
             }
         }
+    }
+    fun setOnItemClickListener(listener : (Article) -> Unit) {
+        onItemClickListener = listener
     }
 }
