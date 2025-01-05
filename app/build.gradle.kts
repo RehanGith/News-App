@@ -52,7 +52,8 @@ dependencies {
     //navigation libraries
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
-
+    //glide library
+    implementation(libs.github.glide)
     
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

@@ -24,10 +24,10 @@ class NewsAdapter(private val context: Context, private val articleList: ArrayLi
     }
 
     override fun getItemCount(): Int {
-        return articleList.size
+        return 1
     }
 
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
-        TODO("Not yet implemented")
+
     }
 }

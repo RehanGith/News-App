@@ -32,7 +32,4 @@ abstract class NewsDatabase(context : Context): RoomDatabase() {
                 "newDatabase_db.db"
             ).build()
     }
-
-
-
 }
