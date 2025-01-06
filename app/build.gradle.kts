@@ -41,6 +41,9 @@ android {
 }
 
 dependencies {
+    //coroutine library
+    implementation(libs.jetbrains.coroutine.core)
+    implementation(libs.jetbrains.coroutine.kotlinx)
     //lifecycle library
     implementation(libs.androidx.lifecyle.viewmodel)
     //Room database libraries

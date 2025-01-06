@@ -25,6 +25,7 @@ class NewsAdapter(private val context: Context):
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+
             return oldItem == newItem
         }
     }
