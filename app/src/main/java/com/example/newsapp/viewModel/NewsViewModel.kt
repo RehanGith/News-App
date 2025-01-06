@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.room.Query
 import com.example.newsapp.model.Article
 import com.example.newsapp.model.newsResponse
 import com.example.newsapp.repository.NewsRepository
@@ -100,6 +101,24 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
             }
         }
     }
+    private suspend fun searchInternet(searchQuery: String) {
+        newSearchQuery = searchQuery
+        headline.postValue(Resource.Loading())
+        try{
+            if (internetConnectivity(this.getApplication()) == true) {
+                val response = newsRepository.getSearchedArticles(searchQuery, searchNewsPage)
+                searchNews.postValue(handleHeadlineResponse(response))
+            } else {
+                searchNews.postValue(Resource.Error("no Internet"))
+            }
+        } catch (t : Throwable) {
+            when(t) {
+                is IOException -> searchNews.postValue(Resource.Error("Unable to connect to Internet"))
+                else -> searchNews.postValue(Resource.Error("no Internet"))
+            }
+        }
+    }
+
 }
 
 
