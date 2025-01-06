@@ -7,16 +7,13 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.newsapp.model.Article
 import com.example.newsapp.model.newsResponse
 import com.example.newsapp.repository.NewsRepository
 import com.example.newsapp.util.Resource
 import kotlinx.coroutines.launch
-import okhttp3.internal.toImmutableList
-import okio.IOException
 import retrofit2.Response
-import java.util.Locale.IsoCountryCode
+import java.io.IOException
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
     val headline: MutableLiveData<Resource<newsResponse>> = MutableLiveData()
