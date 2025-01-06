@@ -26,6 +26,12 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
     var newSearchQuery: String? = null
     var oldSearchQuery: String? = null
 
+    fun getHeadlineNews(countryCode: String) = viewModelScope.launch {
+        headlineInternet(countryCode)
+    }
+    fun getSearchedNews(searchQuery: String) = viewModelScope.launch {
+        searchInternet(searchQuery)
+    }
     private fun handleHeadlineResponse(resource: Response<newsResponse>): Resource<newsResponse> {
         if(resource.isSuccessful) {
             resource.body()?.let { resultResponse ->
