@@ -13,7 +13,9 @@ import com.example.newsapp.repository.NewsRepository
 import com.example.newsapp.util.Resource
 import kotlinx.coroutines.launch
 import okhttp3.internal.toImmutableList
+import okio.IOException
 import retrofit2.Response
+import java.util.Locale.IsoCountryCode
 
 class NewsViewModel(app: Application, val newsRepository: NewsRepository): AndroidViewModel(app) {
     val headline: MutableLiveData<Resource<newsResponse>> = MutableLiveData()
@@ -80,6 +82,22 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
                     else -> false
                 }
             }?: false
+        }
+    }
+    private suspend fun headlineInternet(countryCode: String) {
+        headline.postValue(Resource.Loading())
+        try{
+            if (internetConnectivity(this.getApplication()) == true) {
+                val response = newsRepository.getHeadlines(countryCode, headlinesPage)
+                headline.postValue(handleHeadlineResponse(response))
+            } else {
+                headline.postValue(Resource.Error("no Internet"))
+            }
+        } catch (t : Throwable) {
+            when(t) {
+                is IOException -> headline.postValue(Resource.Error("Unable to connect to Internet"))
+                else -> headline.postValue(Resource.Error("no Internet"))
+            }
         }
     }
 }
