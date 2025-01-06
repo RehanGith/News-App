@@ -27,11 +27,31 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
                 if(headlinesResponse == null) {
                     headlinesResponse = resultResponse
                 } else {
-                    val oldArticle = headlinesResponse!!.articles.toMutableList()
+                    val oldArticle = headlinesResponse!!.articles
                     val newArticle = resultResponse.articles
                     oldArticle.addAll(newArticle)
                 }
                 return Resource.Success(headlinesResponse ?: resultResponse)
+            }
+        }
+        return Resource.Error(resource.message())
+    }
+
+    private fun handleSearchResponse(resource: Response<newsResponse>): Resource<newsResponse> {
+
+        if(resource.isSuccessful) {
+            resource.body()?.let { resultResponse ->
+                if(searchResponse == null || newSearchQuery != oldSearchQuery) {
+                    searchNewsPage = 1
+                    oldSearchQuery = newSearchQuery
+                    searchResponse = resultResponse
+                } else {
+                    searchNewsPage++
+                    val oldArticle = searchResponse!!.articles
+                    val newArticle = resultResponse.articles
+                    oldArticle.addAll(newArticle)
+                }
+                return Resource.Success(searchResponse ?: resultResponse)
             }
         }
         return Resource.Error(resource.message())
