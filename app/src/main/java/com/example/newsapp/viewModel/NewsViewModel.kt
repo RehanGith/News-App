@@ -3,9 +3,12 @@ package com.example.newsapp.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.example.newsapp.model.Article
 import com.example.newsapp.model.newsResponse
 import com.example.newsapp.repository.NewsRepository
 import com.example.newsapp.util.Resource
+import kotlinx.coroutines.launch
 import okhttp3.internal.toImmutableList
 import retrofit2.Response
 
@@ -55,6 +58,14 @@ class NewsViewModel(app: Application, val newsRepository: NewsRepository): Andro
             }
         }
         return Resource.Error(resource.message())
+    }
+    fun addToFavorite(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+    fun getAllFavorite() = newsRepository.getAllArticle()
+
+    fun deleterArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 }
 
