@@ -36,13 +36,22 @@ class HeadlinesFragment : Fragment() {
     var isScrolling = false
     var isLatePage = false
 
-    fun hideProgressBar() {
+    private fun hideProgressBar() {
         binding.loadingProgressbar.visibility = View.INVISIBLE
         isLoading = false
     }
-    fun showProgressBar() {
+    private fun showProgressBar() {
         binding.loadingProgressbar.visibility = View.VISIBLE
         isLoading = true
+    }
+
+    private fun showErrorMessage() {
+        itemExecuteError.visibility = View.VISIBLE
+        isError = true
+    }
+    private fun hideErrorMessage() {
+        itemExecuteError.visibility = View.INVISIBLE
+        isError = false
     }
 
 }
