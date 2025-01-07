@@ -13,4 +13,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     lateinit var newsViewModel: NewsViewModel
     lateinit var binding: FragmentArticleBinding
     lateinit var args: Bundle
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentArticleBinding.bind(view)
+    }
 }
