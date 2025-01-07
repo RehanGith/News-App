@@ -49,9 +49,19 @@ class HeadlinesFragment : Fragment() {
         itemExecuteError.visibility = View.VISIBLE
         isError = true
     }
-    private fun hideErrorMessage() {
+    private fun hideErrorMessage(message: String) {
         itemExecuteError.visibility = View.INVISIBLE
+        error.text = message
         isError = false
+    }
+    val scrollList = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+        }
     }
 
 }
