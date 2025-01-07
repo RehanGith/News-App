@@ -36,6 +36,13 @@ class HeadlinesFragment : Fragment() {
     var isScrolling = false
     var isLatePage = false
 
-
+    fun hideProgressBar() {
+        binding.loadingProgressbar.visibility = View.INVISIBLE
+        isLoading = false
+    }
+    fun showProgressBar() {
+        binding.loadingProgressbar.visibility = View.VISIBLE
+        isLoading = true
+    }
 
 }
