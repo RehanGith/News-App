@@ -14,6 +14,7 @@ import com.example.newsapp.R
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.databinding.FragmentArticleBinding
 import com.example.newsapp.databinding.FragmentHeadlinesBinding
+import com.example.newsapp.util.Constants
 import com.example.newsapp.viewModel.NewsViewModel
 
 
@@ -62,6 +63,17 @@ class HeadlinesFragment : Fragment() {
             val firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
+
+            val isNoErrors = !isError
+            val isNotLoadingAndNotLastPage = !isLoading && !isLatePage
+            val isAtLastItem = firstVisibleItem + visibleItemCount >= totalItemCount
+            val isNotAtBeginning = firstVisibleItem >= 0
+            val isTotalMoreThanVisible = totalItemCount >= Constants.DEFAULT_QUERY_PAGE
+            val shouldPaginate = isNoErrors && isNotAtBeginning && isAtLastItem && isNotLoadingAndNotLastPage && isTotalMoreThanVisible
+            if(shouldPaginate) {
+                viewModel.getHeadlineNews("us")
+                isScrolling= false
+            }
         }
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
