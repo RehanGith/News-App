@@ -83,6 +83,12 @@ class HeadlinesFragment : Fragment() {
     }
     fun setUpHeadlineRecycler() {
         newsAdapter = NewsAdapter()
+        binding.rvHeadline.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@HeadlinesFragment.scrollList)
+            setHasFixedSize(true)
+        }
     }
 
 
