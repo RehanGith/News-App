@@ -10,6 +10,7 @@ import android.widget.AbsListView
 import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
@@ -37,7 +38,16 @@ class HeadlinesFragment : Fragment() {
         val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val lView: View = inflater.inflate(R.layout.item_error, null)
 
+        retryButton = lView.findViewById(R.id.btRetry)
+        error = lView.findViewById<TextView>(R.id.tvErrorItem)
 
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment, bundle)
+        }
 
     }
     var isError = false
