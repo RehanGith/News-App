@@ -1,6 +1,5 @@
 package com.example.newsapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -10,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.newsapp.databinding.ItemNewsBinding
 import com.example.newsapp.model.Article
 
-class NewsAdapter(private val context: Context):
+class NewsAdapter:
     RecyclerView.Adapter<NewsAdapter.ArticleHolder>() {
     class ArticleHolder(binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
         val articleImage = binding.articleImage
@@ -32,7 +31,7 @@ class NewsAdapter(private val context: Context):
     private val differ = AsyncListDiffer(this@NewsAdapter, differCallBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleHolder {
-        return ArticleHolder(ItemNewsBinding.inflate(LayoutInflater.from(context), parent, false))
+        return ArticleHolder(ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -40,7 +39,9 @@ class NewsAdapter(private val context: Context):
     }
     private var onItemClickListener: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
-        Glide.with(context).load(differ.currentList[position].urlToImage).into(holder.articleImage)
+        holder.itemView.apply {
+            Glide.with(this).load(differ.currentList[position].urlToImage).into(holder.articleImage)
+        }
         holder.articleTitle.text = differ.currentList[position].title
         holder.articleSource.text = differ.currentList[position].source.name
         holder.articleDateTime.text = differ.currentList[position].publishedAt
