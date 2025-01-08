@@ -91,7 +91,7 @@ class HeadlinesFragment : Fragment() {
         error.text = message
         isError = false
     }
-    val scrollList = object : RecyclerView.OnScrollListener() {
+    private val scrollList = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager

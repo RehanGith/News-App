@@ -78,7 +78,7 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
-    fun internetConnectivity(context: Context): Boolean? {
+    private fun internetConnectivity(context: Context): Boolean {
         (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).apply {
             return getNetworkCapabilities(activeNetwork)?.run {
                 when {
@@ -93,7 +93,7 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
     private suspend fun headlineInternet(countryCode: String) {
         headline.postValue(Resource.Loading())
         try{
-            if (internetConnectivity(this.getApplication()) == true) {
+            if (internetConnectivity(this.getApplication())) {
                 val response = newsRepository.getHeadlines(countryCode, headlinesPage)
                 headline.postValue(handleHeadlineResponse(response))
             } else {
@@ -110,7 +110,7 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
         newSearchQuery = searchQuery
         headline.postValue(Resource.Loading())
         try{
-            if (internetConnectivity(this.getApplication()) == true) {
+            if (internetConnectivity(this.getApplication())) {
                 val response = newsRepository.getSearchedArticles(searchQuery, searchNewsPage)
                 searchNews.postValue(handleHeadlineResponse(response))
             } else {
