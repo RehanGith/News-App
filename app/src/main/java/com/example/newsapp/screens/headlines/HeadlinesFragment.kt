@@ -10,6 +10,8 @@ import android.widget.AbsListView
 import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.example.newsapp.R
 import com.example.newsapp.adapter.NewsAdapter
 import com.example.newsapp.databinding.FragmentHeadlinesBinding
 import com.example.newsapp.util.Constants
+import com.example.newsapp.util.Resource
 import com.example.newsapp.viewModel.NewsViewModel
 
 
@@ -48,6 +51,21 @@ class HeadlinesFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment, bundle)
         }
+        viewModel.headline.observe(viewLifecycleOwner, Observer { response ->
+            when(response) {
+                is Resource.Success<*> -> {
+
+                }
+                is Resource.Loading<*> -> {
+
+                }
+
+                is Resource.Error<*> -> {
+
+                }
+            }
+
+        })
 
     }
     var isError = false
