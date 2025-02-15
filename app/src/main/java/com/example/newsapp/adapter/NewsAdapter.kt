@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.newsapp.R
 import com.example.newsapp.databinding.ItemNewsBinding
 import com.example.newsapp.model.Article
 
@@ -46,12 +47,12 @@ class NewsAdapter(private val listener: OnItemClick):
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(holder.articleImage)
+            Glide.with(this).load(article.urlToImage ?: R.drawable.ic_launcher_foreground).into(holder.articleImage)
         }
-        holder.articleTitle.text = article.title
-        holder.articleSource.text = article.source.name
-        holder.articleDateTime.text = article.publishedAt
-        holder.articleDescription.text = article.description
+        holder.articleTitle.text = article.title ?: "No Title Available"
+        holder.articleSource.text = article.source.name ?: "Unknown Source"
+        holder.articleDateTime.text = article.publishedAt ?: "Unknown Date"
+        holder.articleDescription.text = article.description ?: "No Description"
         holder.itemView.setOnClickListener {
             Log.d("NewsAdapter", "onBindViewHolder: $article")
             listener.onItemViewClick(article)

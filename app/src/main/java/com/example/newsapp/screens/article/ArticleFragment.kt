@@ -29,7 +29,9 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         }
         binding.fabButton.setOnClickListener{
             article?.let { it1 -> newsViewModel.addToFavorite(it1) }
-            Snackbar.make(view, "Added to favoriate", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view,"Article saved successfully",Snackbar.LENGTH_SHORT).show()
+            binding.fabButton.setImageResource(R.drawable.ic_filled_fav)
+
         }
     }
 }
