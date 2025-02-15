@@ -66,7 +66,6 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites), NewsAdapter.O
         activity.let {
             viewModel.getAllFavorite().observe(viewLifecycleOwner) { news ->
                 newsAdapter.differ.submitList(news)
-
             }
         }
     }
@@ -75,7 +74,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites), NewsAdapter.O
         val bundle = Bundle().apply {
             putSerializable("article", article)
         }
-        findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment, bundle)
+        findNavController().navigate(R.id.action_favouritesFragment_to_articleFragment, bundle)
     }
 
 }
