@@ -29,12 +29,10 @@ import com.example.newsapp.viewModel.NewsViewModel
 class HeadlinesFragment : Fragment(), NewsAdapter.OnItemClick {
     lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
-    lateinit var recycleView: RecyclerView
     private lateinit var retryButton: Button
     private lateinit var error: TextView
     private lateinit var itemExecuteError: CardView
     private lateinit var binding: FragmentHeadlinesBinding
-    private lateinit var bundle: Bundle
 
     @SuppressLint("InflateParams")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
