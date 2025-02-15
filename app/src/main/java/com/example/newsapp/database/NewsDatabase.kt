@@ -9,7 +9,7 @@ import com.example.newsapp.api.ApiInterface
 import com.example.newsapp.model.Article
 
 
-@Database( entities = [Article::class], version = 1)
+@Database( entities = [Article::class], version = 2)
 @TypeConverters(Converter::class)
 abstract class NewsDatabase: RoomDatabase() {
     abstract fun getArticleDao(): ArticleDao
@@ -30,6 +30,7 @@ abstract class NewsDatabase: RoomDatabase() {
                 context.applicationContext,
                 NewsDatabase::class.java,
                 "newDatabase_db.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration().build()
     }
 }
