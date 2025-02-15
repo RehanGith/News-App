@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        initializeViewModel()
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentView) as NavHostFragment
         navController = navHostFragment.navController
         binding.bottomNavView.setupWithNavController(navController)
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
-    fun initializeViewModel() {
+    private fun initializeViewModel() {
         val newsRepository = NewsRepository(NewsDatabase(this))
         val viewModelFactory = ViewModelFactory(application, newsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp()
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

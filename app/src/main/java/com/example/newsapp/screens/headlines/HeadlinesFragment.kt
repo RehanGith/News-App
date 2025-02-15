@@ -26,7 +26,7 @@ import com.example.newsapp.util.Resource
 import com.example.newsapp.viewModel.NewsViewModel
 
 
-class HeadlinesFragment : Fragment(), NewsAdapter.OnItemClick {
+class HeadlinesFragment : Fragment(R.layout.fragment_headlines), NewsAdapter.OnItemClick {
     lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var retryButton: Button
