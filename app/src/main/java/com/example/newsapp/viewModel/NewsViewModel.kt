@@ -17,8 +17,8 @@ import java.io.IOException
 
 class NewsViewModel(app: Application, private val newsRepository: NewsRepository): AndroidViewModel(app) {
     val headline: MutableLiveData<Resource<newsResponse>> = MutableLiveData()
-    private var headlinesPage  = 1
-    private var headlinesResponse: newsResponse? = null
+    var headlinesPage  = 1
+    var headlinesResponse: newsResponse? = null
 
     val searchNews: MutableLiveData<Resource<newsResponse>> = MutableLiveData()
     var searchNewsPage = 1
@@ -112,7 +112,7 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
         try{
             if (internetConnectivity(this.getApplication())) {
                 val response = newsRepository.getSearchedArticles(searchQuery, searchNewsPage)
-                searchNews.postValue(handleHeadlineResponse(response))
+                searchNews.postValue(handleSearchResponse(response))
             } else {
                 searchNews.postValue(Resource.Error("no Internet"))
             }
