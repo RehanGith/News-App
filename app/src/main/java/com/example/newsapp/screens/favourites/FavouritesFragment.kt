@@ -29,8 +29,8 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites), NewsAdapter.O
         viewModel = (activity as MainActivity).viewModel
         setUpRecyclerView()
 
-        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT,
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN) {
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
