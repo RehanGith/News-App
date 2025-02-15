@@ -39,11 +39,9 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines), NewsAdapter.OnI
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHeadlinesBinding.bind(view)
         itemExecuteError = view.findViewById(R.id.layoutError)
-        val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val lView: View = inflater.inflate(R.layout.item_error, null)
 
-        retryButton = lView.findViewById(R.id.btRetry)
-        error = lView.findViewById(R.id.tvErrorItem)
+        retryButton = binding.layoutError.btRetry
+        error = binding.layoutError.tvErrorItem
         viewModel = (activity as MainActivity).viewModel
         setUpHeadlineRecycler()
         retryButton.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.example.newsapp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -26,11 +27,10 @@ class NewsAdapter(private val listener: OnItemClick):
 
     private val differCallBack =object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.url == newItem.url
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-
             return oldItem == newItem
         }
     }
@@ -44,15 +44,17 @@ class NewsAdapter(private val listener: OnItemClick):
         return differ.currentList.size
     }
     override fun onBindViewHolder(holder: ArticleHolder, position: Int) {
+        val article = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(differ.currentList[position].urlToImage).into(holder.articleImage)
+            Glide.with(this).load(article.urlToImage).into(holder.articleImage)
         }
-        holder.articleTitle.text = differ.currentList[position].title
-        holder.articleSource.text = differ.currentList[position].source.name
-        holder.articleDateTime.text = differ.currentList[position].publishedAt
-        holder.articleDescription.text = differ.currentList[position].description
+        holder.articleTitle.text = article.title
+        holder.articleSource.text = article.source.name
+        holder.articleDateTime.text = article.publishedAt
+        holder.articleDescription.text = article.description
         holder.itemView.setOnClickListener {
-            listener.onItemViewClick(differ.currentList[position])
+            Log.d("NewsAdapter", "onBindViewHolder: $article")
+            listener.onItemViewClick(article)
         }
     }
 

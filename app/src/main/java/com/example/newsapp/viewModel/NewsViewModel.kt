@@ -41,9 +41,10 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
                 if(headlinesResponse == null) {
                     headlinesResponse = resultResponse
                 } else {
-                    val oldArticle = headlinesResponse!!.articles
-                    val newArticle = resultResponse.articles
-                    oldArticle.addAll(newArticle)
+                    val oldArticles = headlinesResponse!!.articles.toMutableList()
+                    val newArticles = resultResponse.articles
+                    oldArticles.addAll(newArticles)
+                    headlinesResponse = resultResponse.copy(articles = oldArticles)
                 }
                 return Resource.Success(headlinesResponse ?: resultResponse)
             }
@@ -61,9 +62,10 @@ class NewsViewModel(app: Application, private val newsRepository: NewsRepository
                     searchResponse = resultResponse
                 } else {
                     searchNewsPage++
-                    val oldArticle = searchResponse!!.articles
-                    val newArticle = resultResponse.articles
-                    oldArticle.addAll(newArticle)
+                    val oldArticles = searchResponse!!.articles.toMutableList()
+                    val newArticles = resultResponse.articles
+                    oldArticles.addAll(newArticles)
+                    searchResponse= resultResponse.copy(articles = oldArticles)
                 }
                 return Resource.Success(searchResponse ?: resultResponse)
             }
