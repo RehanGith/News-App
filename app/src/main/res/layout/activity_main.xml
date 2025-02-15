@@ -27,7 +27,7 @@
         android:background="@color/colorPrimary"
         app:itemIconTint="@color/purple_200"
         app:itemTextAppearanceActive="@color/black"
-        app:itemTextAppearanceInactive="@color/gray"
+        app:itemTextAppearanceInactive="@color/colorAccent"
         app:menu="@menu/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
